@@ -2,6 +2,7 @@
  * @author Ah-hyun Song <billi.ahhyunlish@gmail.com>
  */
 
+/* @ts-check */
 /*
 Todo {
     아이디(required),
@@ -41,7 +42,7 @@ class todo {
  * @constructor
  * @type {Todo[]}
  */
-const todoList =[];
+let todoList =[];
 
  /* CREATE
   할 일을 추가할 수 있다.
@@ -55,7 +56,6 @@ const todoList =[];
  * @param {string[]} tags - The author of the book.
  */
 function addTodo (id,{contents, isDone, category, tags}){
-  console.log(contents.length)
   if(contents.length<=0){
     console.log('please wrtie contents')
     return ;
@@ -103,6 +103,18 @@ function getTodo(id){
  * @param {Array<string>} tags - The author of the book.
  * */
  function updateTodo (id,{contents, category, tags}){
+  let i=0;
+  const newTodoList=[];
+  const newTodo=new todo(id,contents,false,category,tags)
+  for (;i < todoList.length;i++) {
+    if(todoList[i].id===id){
+      newTodoList.push(newTodo);
+    }else{
+      newTodoList.push(todoList[i]);
+    }
+  }
+  todoList=[...newTodoList];
+  return todoList
  }
 
  /*
@@ -117,13 +129,17 @@ function getTodo(id){
  * @param {string} id - The title of the book.
  * */
  function removeTodo(id){
-
+  const newTodoList=todoList.filter((todo)=>{
+    return todo.id!==id
+  })
+  todoList=[...newTodoList];
+  return todoList;
  }
   /**
  * @func
  * */
 function removeAllTodo(){
-
+  todoList=[];
 }
 
   /**
