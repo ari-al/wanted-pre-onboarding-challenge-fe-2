@@ -8,11 +8,19 @@
 <body>
     <h1>To Do List</h1>
     <div class="container">
-        <input id="inputField" type="text">
-        <button id="addToDo"> + </button>
-        <div class="to-dos" id="toDoList"> </div>
+        <form>
+            <input id="contentsField" type="text"/>
+            <input id="categoryField" type="text"/>
+            <input id="tags" type="text"/>
+            <button type="button" id="addToDo" onclick="addTodo()"> + </button>
+        </form>
+        <div class="to-dos" id="toDoList">
+            <ul>
+
+            </ul>
+        </div>
 
     </div>
-    <script src="main.js"> </script>
+    <script src="../src/todo.js"> </script>
 </body>
 </html>

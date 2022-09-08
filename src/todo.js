@@ -27,7 +27,15 @@ Todo {
  * @constructor
  * @type {Todo}
  */
-const todo = {}
+class todo {
+  constructor(id, contents, isDone, category, tags) {
+		this.id = id;
+		this.contents = contents;
+		this.isDone = isDone;
+		this.category = category;
+		this.tags = tags;
+	}
+}
 
  /**
  * @constructor
@@ -44,10 +52,16 @@ const todoList =[];
  * @param {string} contents - The author of the book.
  * @param {boolean} isDone - The title of the book.
  * @param {string} category - The author of the book.
- * @param {Array<string>} tags - The author of the book.
+ * @param {string[]} tags - The author of the book.
  */
 function addTodo (id,{contents, isDone, category, tags}){
-
+  console.log(contents.length)
+  if(contents.length<=0){
+    console.log('please wrtie contents')
+    return ;
+  }
+	const todoItem = new todo(id, contents, isDone, category, tags);
+	todoList.push(todoItem);
 }
 
 /*  
@@ -61,7 +75,10 @@ function addTodo (id,{contents, isDone, category, tags}){
  * @returns {Todo}
  * */
 function getTodo(id){
-
+  const todo = todoList.filter((todo)=>{
+    return todo.id===id
+  })
+  return todo.length>0?todo[0]:'';
 } 
 
 /**
@@ -70,7 +87,7 @@ function getTodo(id){
  * @returns {Todo[]}
  * */
  function getAllTodo(){
-
+  return todoList
 } 
 
  /*
@@ -86,8 +103,6 @@ function getTodo(id){
  * @param {Array<string>} tags - The author of the book.
  * */
  function updateTodo (id,{contents, category, tags}){
-
-
  }
 
  /*
